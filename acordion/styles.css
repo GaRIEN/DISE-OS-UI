@@ -15,7 +15,7 @@ details {
   margin-top: 30px;
   font-size: 1rem;
   border: 1px solid #c3deff;
-  background: #F6FAFF;
+  background: #f6faff;
   width: 100%;
   max-width: 600px;
   border-radius: 10px;
@@ -24,14 +24,30 @@ details {
 details:hover {
   border: 1px solid #a4a1ff;
 }
+details[open] {
+  background-color: rgb(141, 231, 231);
+}
+
+.expand-icon,
+details[open] .redus-icon {
+  display: block;
+}
+.redus-icon,
+details[open] .expand-icon {
+  display: none;
+}
 
 summary {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   user-select: none;
   font-weight: 600;
   list-style: none;
   padding: 10px;
   cursor: pointer;
+}
+
+details p {
+  margin: 5px 15px 10px 15px;
 }
