@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas de Producción</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 1400px;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-title {
+            color: #dc3545;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .table thead {
+            background-color: #d9ead3;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .table th {
+            font-weight: 600;
+            border-bottom: 2px solid #adb5bd;
+        }
+
+        .product-row {
+            transition: all 0.2s ease;
+        }
+
+        .product-row:hover {
+            background-color: #f1f8ff;
+        }
+
+        .expanded-details {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .ingredients-header {
+            background-color: #e7f1ff;
+            border-radius: 8px 8px 0 0;
+            padding: 15px;
+            margin-bottom: 0;
+        }
+
+        .ingredients-table {
+            margin-bottom: 0;
+        }
+
+        .ingredients-table thead {
+            background-color: #cfe2ff;
+        }
+
+        .highlight-total {
+            background-color: #fff3cd;
+            font-weight: bold;
+        }
+
+        .form-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+
+        .btn-expand {
+            transition: all 0.3s ease;
+        }
+
+        .btn-expand:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        @media (max-width: 992px) {
+            .table-responsive-lg {
+                font-size: 0.875rem;
+            }
+
+            .btn-sm {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid p-4 container-father">
+        <div class="container-porductEnd shadow rounded w-100">
+            <div class="header-section">
+                <h1 class="main-title">Productos Terminados</h1>
+                <p class="subtitle">Gestión de recetas y materias primas para producción</p>
+            </div>
+
+            <div class="p-2 p-md-3">
+                <!-- Tabla de productos terminados -->
+                <div class="pb-3 d-flex justify-content-end">
+                    <button class="btn btn-info" id="btn-newRow">Agregar Fila</button>
+                </div>
+
+                <div class="table-responsive-lg">
+                    <table class="table  table-bordered align-middle">
+                        <thead class="table-info">
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Presentación</th>
+                                <th>U.Med.</th>
+                                <th>Afect. Trib.</th>
+                                <th>Prod. Inmed.</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-tableProducts">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Agregar funcionalidad para resaltar la fila expandida
+        document.addEventListener('DOMContentLoaded', function () {
+            const expandButtons = document.querySelectorAll('.btn-expand');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-bs-target');
+                    const targetRow = document.querySelector(targetId).closest('tr');
+
+                    // Remover la clase de resaltado de todas las filas
+                    document.querySelectorAll('.product-row').forEach(row => {
+                        row.classList.remove('table-active');
+                    });
+
+                    // Resaltar la fila del producto que se está expandiendo
+                    this.closest('.product-row').classList.add('table-active');
+                });
+            });
+        });
+    </script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

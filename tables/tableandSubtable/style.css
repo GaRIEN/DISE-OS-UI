@@ -1,0 +1,7 @@
+.container-father{
+ min-height: 100dvh;
+  display: flex; /* para forzar ajuste */
+}
+.container-porductEnd{
+    flex: 1;
+}
